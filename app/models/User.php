@@ -100,7 +100,6 @@ class User extends Database
 
       if($stm->rowCount() > 0) {
         return $stm->fetch(PDO::FETCH_ASSOC);
-        // return false;
       } else{
         return false;
       }
@@ -108,4 +107,23 @@ class User extends Database
       return false;
     }
   }
+
+
+
+  public function allData()
+  {
+    try {
+      $stm = $this->pdo->prepare("SELECT name, email, title, year_created FROM `users` JOIN books");
+      $stm->execute();
+
+      if($stm->rowCount() > 0) {
+        return $stm->fetch(PDO::FETCH_ASSOC);
+      } else{
+        return false;
+      }
+    } catch(PDOException $err) {
+      return false;
+    }
+  }
+
 }

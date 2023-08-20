@@ -8,6 +8,7 @@ $routes = [
   
   '/books'             => 'BookService@index',
   '/books/all'         => 'BookService@listAll',
+  '/books/alldata'     => 'BookService@allData',
   '/books/create'      => 'BookService@create',
   '/books/list/{id}'   => 'BookService@listById',
   '/books/update/{id}' => 'BookService@update',

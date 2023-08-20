@@ -240,6 +240,54 @@ class BookService extends Requests
     echo json_encode($result);
   }
 
+
+  public function allData()
+  {
+    $method = $this->getMethod();
+
+    $book = new Book();
+    $userG = new User();
+
+    $jwt = new JWT();
+    $authorization = new Authorization();
+
+    $result = [];
+
+    if ($method == 'GET') {
+      $token = $authorization->getAuthorization();
+
+      if ($token) {
+        $user = $jwt->validateJWT($token);
+
+        if ($user) {
+
+          
+          if ($userG->isAdmin($user->id)) {
+            $result = [
+              'quantity' => count($userG->allData()),
+              'books' => $userG->allData()
+            ];
+          } else {
+            http_response_code(401);
+            $result['error'] = "Unauthorized, You are not an admin";
+          }
+          
+        } else {
+          http_response_code(401);
+          $result['error'] = "Unauthorized, please, verify your token";
+        }
+      } else {
+        http_response_code(401);
+        $result['error'] = "Unauthorized, please, verify your token";
+      }
+    } else {
+      http_response_code(405);
+      $result['error'] = "HTTP Method not allowed";
+    }
+
+    echo json_encode($result);
+  }
+
   public function remove($id)
   {
     $method = $this->getMethod();
