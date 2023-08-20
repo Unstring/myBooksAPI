@@ -212,6 +212,8 @@ class BookService extends Requests
 
         if ($user) {
 
+          echo var_dump($user);
+          exit;
           if ($user->admin) {
             $result = [
               'quantity' => count($book->listAll()),
