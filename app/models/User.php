@@ -91,4 +91,20 @@ class User extends Database
       return false;
     }
   }
+
+  public function isAdmin($id)
+  {
+    try {
+      $stm = $this->pdo->prepare("SELECT admin FROM users WHERE id = ?");
+      $stm->execute([$id]);
+
+      if($stm->rowCount() > 0) {
+        return $stm->fetch(PDO::FETCH_ASSOC);
+      } else{
+        return false;
+      }
+    } catch(PDOException $err) {
+      return false;
+    }
+  }
 }

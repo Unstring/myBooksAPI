@@ -198,6 +198,7 @@ class BookService extends Requests
     $method = $this->getMethod();
 
     $book = new Book();
+    $userG = new User();
 
     $jwt = new JWT();
     $authorization = new Authorization();
@@ -212,9 +213,8 @@ class BookService extends Requests
 
         if ($user) {
 
-          echo var_dump($user);
-          exit;
-          if ($user->admin) {
+          
+          if ($userG->isAdmin($user->id)) {
             $result = [
               'quantity' => count($book->listAll()),
               'books' => $book->listAll()
