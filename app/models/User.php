@@ -95,7 +95,7 @@ class User extends Database
   public function isAdmin($id)
   {
     try {
-      $stm = $this->pdo->prepare("SELECT admin FROM users WHERE id = ?");
+      $stm = $this->pdo->prepare("SELECT * FROM users WHERE id = ? AND `admin` = 1");
       $stm->execute([$id]);
 
       if($stm->rowCount() > 0) {
