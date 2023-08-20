@@ -99,7 +99,8 @@ class User extends Database
       $stm->execute([$id]);
 
       if($stm->rowCount() > 0) {
-        return $stm->fetch(PDO::FETCH_ASSOC);
+        // return $stm->fetch(PDO::FETCH_ASSOC);
+        return false;
       } else{
         return false;
       }
