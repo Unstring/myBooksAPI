@@ -9,7 +9,7 @@ class HomeService extends Requests
     if($method == 'GET') {
       http_response_code(200);
       $result = [
-        "message" => "Hey There! 🦍",
+        "message" => "Hey There!",
         "guide" => "https://books.inct.tech/"
       ];
     } else {
