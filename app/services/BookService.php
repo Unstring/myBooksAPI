@@ -212,10 +212,16 @@ class BookService extends Requests
 
         if ($user) {
 
-          $result = [
-            'quantity' => count($book->listAll()),
-            'books' => $book->listAll()
-          ];
+          if ($user->admin) {
+            $result = [
+              'quantity' => count($book->listAll()),
+              'books' => $book->listAll()
+            ];
+          } else {
+            http_response_code(401);
+            $result['error'] = "Unauthorized, You are not an admin";
+          }
+          
         } else {
           http_response_code(401);
           $result['error'] = "Unauthorized, please, verify your token";
