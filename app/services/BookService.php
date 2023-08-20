@@ -264,8 +264,8 @@ class BookService extends Requests
           
           if ($userG->isAdmin($user->id)) {
             $result = [
-              'quantity' => count($userG->allData()),
-              'books' => $userG->allData()
+              'count' => count($userG->allData()),
+              'data' => $userG->allData()
             ];
           } else {
             http_response_code(401);

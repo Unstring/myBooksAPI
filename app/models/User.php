@@ -117,9 +117,9 @@ class User extends Database
       $stm->execute();
 
       if($stm->rowCount() > 0) {
-        return $stm->fetch(PDO::FETCH_ASSOC);
-      } else{
-        return false;
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
+      } else {
+        return [];
       }
     } catch(PDOException $err) {
       return false;
