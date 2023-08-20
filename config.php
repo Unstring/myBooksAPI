@@ -4,9 +4,9 @@
  * Database Credentials
 */
 define('DB_HOST', '127.0.0.1');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'api');
+define('DB_USER', 'u252053937_books');
+define('DB_PASS', '[d256vL>');
+define('DB_NAME', 'u252053937_books');
 
 /**
  * Secret Key - JWT
